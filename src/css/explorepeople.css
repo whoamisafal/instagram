@@ -1,0 +1,24 @@
+.explore-people-main-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 15px;
+    width: 100%;
+    height: 100%;
+}
+
+
+@media screen  and (max-width:612px) {
+    .people-list-item{
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-drag: none;
+    }
+    
+}

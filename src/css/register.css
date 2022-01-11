@@ -1,0 +1,190 @@
+/*Main Container*/
+.main-register-container{
+    display: grid;
+    position: relative;
+    grid-template-columns: auto 25rem auto;
+    background-color: rgba(250, 250, 250,1);
+    height: 100vh;
+    
+}
+
+/*Register Container*/
+.register-main-container{
+    position: relative;
+   
+    height: fit-content;
+}
+
+/*Form Section*/
+
+.register-form-section{
+    position: relative;
+    border: var(--custom-border);
+    margin-top: 30px;
+ 
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 2px;
+    box-shadow: 0 0 1px 0px rgba(230, 230, 230,1);
+}
+
+
+
+
+/* Switch to login section  */
+.switch-login-section{
+    position: relative;
+    width: 100%;
+    margin: 0 0 auto;
+    white-space: wrap;
+    border: var(--custom-border);
+    background-color: white;
+    text-align: center;
+    margin-top:7px;
+    border-radius: 2px;
+    box-shadow: 0 0 1px 0px rgba(230, 230, 230,1);
+}
+.switch-login-section a{
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    margin-left: 3px;
+    padding: 11px;
+    
+    
+}
+
+/* App Title Section on register page */
+.app-name-section-register{
+    position: relative;
+    display: block;
+    width: 100%;
+    text-align: center;
+
+}
+.app-name-section-register h1{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    text-decoration: none;
+    text-align: center;
+    margin-left: 3px;
+    padding: 11px;
+    font-size: 3rem;
+    padding: 7px;
+    color: rgb(97, 94, 94);
+    font-family: Edwardian Script ITC;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+/*Divider*/
+.divider-register{
+    position: relative;
+    display: inline;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    user-select: none;
+}
+.divider-section-register{
+    color: rgb(133, 130, 130);
+}
+
+.divider-section-register::before,.divider-section-register::after{
+    display: inline-block;
+    content: "";
+    border: .2px solid rgba(138, 135, 135, 0.9);
+    width: 7rem;
+    margin: 0 1rem;
+    transform: translateY(-0.2rem);
+}
+
+/*Page description*/
+.short-page-description{
+    position: relative;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: rgb(128, 123, 123);
+    padding: 7px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.term-and-conditions{
+    position: relative;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 16px;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(128, 123, 123);
+    padding: 11px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/*Register Form*/
+.register-form{
+    position: relative;
+    padding: 7px;
+    white-space:pre-wrap;
+  
+
+}
+
+.register-form>input{
+    position: relative;
+    margin-top: 7px;
+    padding: 11px;
+    width: 18rem;
+    outline: none;
+    background-color: rgba(250, 250, 250,1);
+    border: var(--custom-border);
+    border-radius: 5px;
+}
+
+/* For Register Button */
+.register-form>input[type="submit"]:disabled{
+    position: relative;
+    margin-top: 11px;
+    display: inline-block;
+    width: 17.5rem;
+    background-color: rgba(72, 118, 145,0.5);
+    border-radius: 7px;
+    color: white;
+    cursor: pointer;
+}
+.register-form>input[type="submit"]{
+    position: relative;
+    margin-top: 11px;
+    display: inline-block;
+    width: 17.5rem;
+    background-color: tomato;
+    border-radius: 7px;
+    color: white;
+    cursor: pointer;
+}
+.alert-register>.error{
+    position: relative;
+    margin-top: 11px;
+    display: inline-block;
+    font-weight: 500;
+    color: red;
+}
+.alert-register>.success{
+    position: relative;
+    margin-top: 11px;
+    display: inline-block;
+    font-weight: 500;
+    color: green;
+}
+
+

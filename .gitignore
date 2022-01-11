@@ -1,0 +1,39 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/server/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+/.history
+/history
+
+# production
+/build
+
+#image
+/public/images
+/server/assets/
+/server/assets/images/profile/
+
+
+#video
+/public/videos
+/media/videos/
+/server/assets/videos/
+/server/assets/media/videos/
+/server/assets/media/videos/message1640836289070Screen_Recording_20210908-165026.mp4
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

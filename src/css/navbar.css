@@ -1,0 +1,254 @@
+.instagram-navbar-menu-container{
+    position: sticky;
+    background-color: white;
+    border: 1px solid rgba(224, 222, 222,0.3);
+    display: grid;
+    justify-content:center;
+    column-gap: 25px;
+    align-items: center;
+    top: 0;
+    grid-template-columns: 1fr 0.8fr 1.8fr;
+    z-index: 999;
+}
+
+.title-section, .search-section{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-section>.search-people{
+    position: relative;
+    padding: 10px;
+    width: 65%;
+    left: 50px;
+    background-color: rgba(209, 209, 209, 0.3);
+    text-align: center;
+    border: 1px solid rgb(233, 230, 230);
+    outline: none;
+    text-align: start;
+    border-radius: 10px;
+}
+
+
+.title-section>h1>a{
+    float: left;
+    text-decoration: none;
+    color: black;
+    text-align: end;
+    font-size: 1.8em ;
+    font-weight: bold;
+    font-family: Edwardian Script ITC;
+    
+}
+
+menu{
+    height: fit-content;
+}
+
+.instagram-navbar-menu-container>menu{
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.instagram-navbar-menu-container>menu>ul>li{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    float: left;
+    padding: 3px;
+    row-gap: 5px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    user-select: none;
+
+}
+.instagram-navbar-menu-container>menu>ul>li i{
+    font-size: 1.2em;
+    color: rgb(0, 0, 0);
+    padding: 5px;
+    transition: all 0.3s ease-in-out;
+}
+.instagram-navbar-menu-container>menu>ul>li button{
+    background-color: rgba(8, 127, 196, 0.8);
+    color: white;
+    border:none;
+    border-radius: 3px;
+    width: 75px;
+    height: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+/*Menu Style*/
+#menu-send,#mobile-compatible-menu-send{
+    transform: rotateZ(315deg);
+}
+
+
+/* Search-Section */
+.search-result{
+    position: absolute;
+    height: 450px;
+    display: none;
+    width: 400px;
+    background-color: var(--custom-background-color);
+    top: 50px;
+    overflow-y: auto;
+    transition: all 0.5s ease-in-out;
+    box-shadow: 0 0 12px rgb(0, 0, 0,0.3);
+}
+.search-result-item{
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    flex-wrap: wrap;
+    text-decoration: none;
+    color: black;
+}
+.search-result-item:hover{
+
+    background-color: rgba(216, 206, 206,0.3);
+
+}
+.search-result-fullname{
+    font-size: 16px;
+}
+.search-result-username{
+    display: block;
+    flex: 100%;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+
+.sub-menu-profile{
+    position: absolute;
+    top: 45px;
+    display: none;
+    background-color: white;
+    border-radius: 5px;
+    border: var(--custom-border);
+    right: -15px;
+    transition: all 0.5s ease-in-out;
+    box-shadow: 0 0 2px  rgba(87, 87, 87,0.3);
+ }
+ 
+ .sub-menu-divider{
+     position: relative;
+     height: 1px;
+     background-color: rgb(233, 230, 230);
+     margin-bottom: 5px;
+     margin-top: 5px;
+ }
+ .sub-menu-profile a{
+     text-decoration: none;
+     display: inline-block;
+     text-align: start;
+     padding: 5px;
+     padding-right: 25px;
+     width: 150px;
+ 
+ }
+ .sub-menu-profile a:hover{
+     background-color: rgb(243, 239, 239);
+ }
+
+ .search-result-img{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 10px;
+ }
+
+
+ /* End Search Section */
+/* /*  */
+@media screen and (max-width: 600px){
+    .instagram-navbar-menu-container{
+        grid-template-columns: auto auto auto;
+        transition: all 1.5s ease-in-out; 
+    }
+    .instagram-navbar-menu-container>menu>ul>li{
+        position: relative;
+         display: flex; 
+         align-items: center;
+         justify-content: center;
+         transition: all 1.5s ease-in-out; 
+    }
+    .title-section{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 1.5s ease-in-out; 
+    }
+     .search-people{
+         display: none;
+     }
+     .instagram-navbar-menu-container>menu>ul>li{
+         padding: 2px;
+     }
+     .instagram-navbar-menu-container>menu>ul>li i{
+         padding: 0;
+     }
+     .title-section>h1>a{
+         font-size: 1.2em;
+     }
+ } 
+ 
+ /* Sub Menu of Profile */
+/* .mobile-compatible-navbar-main-container{
+    position: sticky;
+    bottom: 0;
+    width: 100vw;
+    height: 10vh;
+    z-index: 999;
+    border: var(--custom-border);
+    background-color: white;
+    display: inline-block;
+
+}.mobile-compatible-sub-menu-profile-disable{
+    right: -50vw;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    transition: width .5s ease-in-out;
+}
+.mobile-compatible-sub-menu-profile-active>a{
+    padding: 15px;
+    text-decoration: none;
+    border: var(--custom-border);
+}
+
+.mobile-compatible-sub-menu-profile-active{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    opacity: 1;
+    height: calc(100vh - 10vh);
+    background-color: white;
+    border: var(--custom-border);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    transition: all .5s ease-in-out;
+}
+.mobile-compatible-menubar>ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+} */
+ /* Mobile View */

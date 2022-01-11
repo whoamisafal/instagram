@@ -1,0 +1,214 @@
+.post-view{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.post-back,.post-next{
+    position: absolute;
+    color: red;
+}
+
+.insta-post-body{
+    position: relative;
+    display: flex;
+ 
+}
+#image-post-view,#video-post-view{
+    position: relative;
+    width: 100%;
+    image-resolution: contain;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.5s ease-in-out;
+}
+.active-slide{
+    opacity: 1;
+    object-fit: contain;
+    transition: all 1.5s ease-in-out;
+}
+.slide{
+    opacity: 0;
+   display: none;
+   
+}
+
+
+.slider-arrow-container{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 9;
+}
+.arrow-button{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: rgb(4, 58, 119);
+    border: 1px solid #000;
+    cursor: pointer;
+    color: white;
+ 
+ 
+    border: none;
+    margin: 5px;
+}
+.arrow-button i{
+    font-weight: bold;
+    font-size: 16px;
+}
+.arrow-button:hover{
+   background-color: rgba(4, 58, 119,0.5);
+    transition: all 0.5s ease-in-out;
+}
+.insta-post-header{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 5px;
+  
+}
+.post-header-profile-picture{
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+.post-header-left{
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 11px;
+   
+}
+#post-header-more{
+
+    cursor: pointer;
+}
+.post-contain{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: rgba(2, 63, 92,0.8);
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    box-shadow: 0 0 3px 3px rgba(238, 235, 235, 0.1);
+    padding: 5px;    
+    font-size: 13px;
+     z-index: 9;
+     user-select: none;
+}
+
+.small-view-hover-user{
+    position: absolute;
+    top: 50px;
+    left: 35px;
+    width: 350px;
+    height: 350px;
+    background-color: white;
+    box-shadow: 0 0 3px 3px rgba(238, 235, 235, 0.1);
+    padding: 5px;    
+    font-size: 13px;
+    border:1px solid rgb(109, 105, 105);
+    border-radius: 25px;
+     z-index: 9;
+     user-select: none;
+     box-shadow: 0 0 5px 5px rgba(70, 69, 69, 0.5);
+}
+.footer-post-buttons{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 5px;
+
+}
+.footer-post-buttons .footer-post-left-side{
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 15px;
+   
+}
+.footer-post-input-comment{
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 15px;
+     width: 100%;
+    
+}
+.footer-post-input-comment input{
+    position: relative;
+    display: block;
+    width: 100%;   
+    padding: 11px;
+    margin: 7px;
+    outline: none;
+    border: none;
+}
+.footer-post-description{
+    margin: 7px;
+    padding: 11px;
+}
+.footer-post-input-comment button{
+    border: none;
+    color: rgb(5, 100, 112);
+    cursor: pointer;
+    padding: 11px;
+    margin: 7px;
+    font-weight: bold;
+    background-color: transparent;
+}
+.footer-post-input-comment button:disabled{
+    color: rgb(5, 100, 112,0.5);
+    cursor: unset;
+}
+hr{
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-top: 1px solid rgba(187, 182, 182,0.5);
+}
+
+.people-list-item{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+.people-list-item-img>img{
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+.explore-people-user-info{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 35px;
+    text-decoration: none;
+    color: black;
+}

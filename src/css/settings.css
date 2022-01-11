@@ -1,0 +1,120 @@
+.settings-container{
+    display: flex;
+    
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    background-color: #fafafa;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 8;
+    column-gap: 10px;
+}
+.settings-menu-section{
+    width: 20%;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 8;
+ 
+}
+.setting-nav>ul>li{
+    list-style: none;
+    padding: 10px;
+    font-weight: bold;
+   
+}
+.setting-nav>ul>li>a{
+    color: #000;
+    text-decoration: none;
+}
+.settings-content-section{
+    width: 60%;
+    display: inline;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 8;
+}
+.edit-profile-container{
+    display: block;
+    padding: 10px;
+
+    z-index: 8;
+}
+.edit-full-name,.username,.email-used,.edit-website,.edit-bio,.edit-date-of-birth,.edit-gender,.change-submit{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 25px;
+    padding: 10px;
+    z-index: 8;
+}
+
+.edit-profile-container input,.form-group input{
+    text-decoration: none;
+    outline: none;
+    padding: 7px;
+    width: 35%;
+    border: var(--custom-border);
+}
+.edit-profile-container label,.form-group label{
+    font-weight: 700;
+    width: 10%;
+}
+#change-password{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 25px;
+    padding: 10px;
+    z-index: 8;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    margin: 7px;
+    margin-top: 15px;
+    background-color: tomato;
+}
+#forgot-password{
+    display: flex;
+
+    padding: 10px;
+    z-index: 8;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: black;
+    margin: 7px;
+    margin-top: 15px;
+    width: 135px;
+   
+}
+.form-group{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 25px;
+    padding: 10px;
+    z-index: 8;
+}
+
+@media screen and (max-width:512px) {
+    .settings-menu-section{
+        width: 100%;
+        transition: all 0.5s ease-in-out;
+    }
+    .settings-content-section{
+        width: 100%;
+        transition: all 0.5s ease-in-out;
+    }
+    .edit-profile-container input,.form-group input{
+        width: 100%;
+        transition: all 0.5s ease-in-out;
+    }
+    .edit-profile-container label,.form-group label{
+        width: 50%;
+        transition: all 0.5s ease-in-out;
+    }
+}

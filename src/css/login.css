@@ -1,0 +1,172 @@
+.main-form-container {
+    margin: 10px;
+}
+
+.main-container-login {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto auto;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--custom-background-color);
+}
+
+.design-section-login-page {
+    background-color: var(--custom-background-color);
+}
+
+.login-form-section {
+    position: relative;
+    border: var(--custom-border);
+    width: 25rem;
+    margin-left: 11px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 3px;
+    background-color: var(--container-color);
+}
+
+.app-name-section-login {
+    position: relative;
+    text-align: center;
+    display: block;
+    width: 100%;
+    font-size: 3em;
+    font-family: Edwardian Script ITC;
+    user-select: none;
+}
+
+
+/*Don't have an account? Main Container*/
+
+.switch-to-signup-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25rem;
+    margin-left: 11px;
+    margin-top: 7px;
+    border: var(--custom-border);
+    background-color: var(--container-color);
+}
+
+.switch-to-signup-container>span:first-child {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    padding: 11px;
+}
+
+.switch-to-signup-container>span:last-child>a {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+
+
+/* Form */
+
+.login-form {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 80%;
+}
+
+.login-form input {
+    position: relative;
+    outline: none;
+    display: block;
+    width: 100%;
+    padding: 11px;
+    margin: 7px;
+    background-color: var(--custom-background-color);
+    border: var(--custom-border);
+    border-radius: 3px;
+}
+
+.login-form input[type="submit"] {
+    position: relative;
+    margin-bottom: 21px;
+    display: block;
+    margin-top: 11px;
+    padding: 6px;
+    cursor: pointer;
+    background-color: rgb(6, 147, 190);
+}
+
+.login-form input[type="submit"]:disabled {
+    background-color: var(--custom-background-color);
+    color: black;
+}
+
+.login-form input[type="submit"]:enabled {
+    background-color: rgb(6, 147, 190);
+    color: white;
+}
+
+
+/*Forgot password*/
+
+.forget-password-section {
+    position: relative;
+    display: block;
+    padding: 11px;
+    margin-bottom: 25px;
+}
+
+.forget-password-section>a {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+}
+
+
+/* Error Section */
+
+.error-section-login {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 11px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 14px;
+    font-family: sans-serif;
+    margin-left: 25px;
+    color: red;
+    margin-right: 25px;
+}
+
+@media screen and (max-width: 768px) {
+    .main-container-login {
+        grid-template-columns: auto;
+        display: flex;
+        justify-content: center;
+    }
+    .design-section-login-page {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 512px) {
+    .main-container-login {
+        grid-template-columns: auto;
+        display: flex;
+        justify-content: center;
+    }
+    .design-section-login-page {
+        display: none;
+    }
+    .login-form-section,
+    .switch-to-signup-container {
+        width: 100vw;
+    }
+}

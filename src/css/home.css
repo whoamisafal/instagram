@@ -1,0 +1,367 @@
+/*REQUIRED*/
+.main-home-container {
+    position: relative;
+    display: grid;
+    width: 100%;
+    min-height: 100%;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 20% 40% 40%;
+    background-color: rgba(250, 250, 250, 1);
+
+}
+
+.post-stories-section {
+    position: relative;
+
+}
+
+.post-sections,
+.stories-section {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.stories-section {
+    position: relative;
+    height: 100px;
+    border: var(--custom-border);
+    scroll-behavior: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-top: 18px;
+    margin-bottom: 7px;
+    background-color: white;
+    display: inline-block;
+    white-space: nowrap;
+    border-radius: 4px;
+    -ms-overflow-style: none;
+    /* for Internet Explorer, Edge */
+    scrollbar-width: none;
+    /* for Firefox */
+
+}
+
+.stories-section::-webkit-scrollbar {
+
+    display: none;
+}
+
+.insta-post {
+    position: relative;
+    background-color: white;
+    border: var(--custom-border);
+    min-height: max-content;
+    border-radius: 2px;
+    margin: 25px 0 5px 0;
+
+}
+
+
+/*Story*/
+.stroy-section {
+    height: 80px;
+    width: 80px;
+    border-radius: 100%;
+    background-color: red;
+    margin: 11px;
+    display: inline-block;
+    cursor: pointer;
+
+
+}
+
+
+/*Suggestion box*/
+.suggestions-section {
+    position: relative;
+    height: 100%;
+    margin: 7px;
+    top: 35px;
+
+}
+
+.suggestion-box {
+    position: fixed;
+  
+    width: 25%;
+    top: 150px;
+  
+    height: 350px;
+}
+
+.suggestions-container {
+    position: relative;
+    display: flex;
+    margin-top: 25px;
+    flex-wrap: nowrap;
+    height: 250px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    display: block;
+  
+    scroll-behavior: smooth;
+}
+
+.suggestions-container::-webkit-scrollbar {
+    display: none;
+}
+
+.suggestion-item-user {
+    position: relative;
+    background-color: white;
+    cursor: pointer;
+    display: inline-block;
+    height: calc(100% - 50px);
+    margin: 7px;
+    width: 150px;
+    box-shadow: 0 0 3px rgba(196, 196, 196, 0.2);
+    border: var(--custom-border);
+    border-radius: 5px;
+    z-index: 8;
+}
+
+.disable-scroll {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+.suggestion-item-user-image {
+    position: relative;
+    height: 120px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.suggestion-item-user-image img {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.suggestion-item-user-info {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000;
+}
+
+.suggestion-item-user-name {
+    margin: 7px;
+}
+
+.suggestions-scroll-container{
+    position: absolute;
+    height: 250px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ 
+   
+}
+.suggestions-main-container{
+    border: var(--custom-border);
+}
+
+#next,
+#prev {
+    position: relative;
+    background-color: rgb(151, 158, 167);
+    text-align: center;
+    color: white;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+    z-index: 15;
+}
+.suggestions-container-header{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    
+}
+
+.suggestions-scroll-container #next :hover,.suggestions-scroll-container #prev :hover {
+    opacity: 0.5;
+}
+
+.suggestions-scroll-container i {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Vertical Suggestions */
+
+.vertical-suggestions-container-header{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    
+}
+.vertical-suggestion-item{
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height:auto;
+    margin: 7px;
+    width: 100%;
+    border-radius: 5px;
+    z-index: 8;
+}
+.vertical-suggestion-item-info{
+    position: relative;
+    width: 100%;
+    display: inline-block;
+    left: 25px;
+   
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000;
+}
+
+/* End */
+
+/* Poup Menu More Post */
+.popup-menupost-main-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.popup-menupost-container{
+    position: absolute;
+    background-color: white;
+    z-index: 9999;
+    text-align: center;
+    border-radius: 15px;
+    transition: all 0.5s ease-in-out;
+
+}
+.popup-menupost-container ul{
+    margin: 0;
+    padding: 0;
+    
+}
+.popup-menupost-container ul li{
+    list-style: none;
+    width: 400px;
+    cursor: pointer;
+    margin: 0;
+    padding: 16px;
+    font-weight: 500;
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
+    transition: all 0.5s ease-in-out;
+}
+.post-report,.post-delete-post,.post-unfollow-user{
+    font-weight: bold;
+    color: rgb(0, 69, 133);
+    transition: all 0.5s ease-in-out;
+}
+
+.popup-menupost-container ul li:last-child
+{
+    border-bottom: none;
+}
+.post-load-more{
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    cursor: pointer;
+    color: rgb(238, 26, 26);
+    transition: all 0.5s ease-in-out;
+}
+
+/* End */
+
+
+@media screen and (max-width: 768px) {
+    .main-home-container {
+        grid-template-columns: 95vw;
+    }
+
+    .main-home-blank-section,
+    .suggestions-section {
+        display: none;
+    }
+
+    .post-stories-section {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .stories-section,
+    .post-sections {
+        width: 80vw;
+
+    }
+
+
+}
+
+@media screen and (max-width: 576px) {
+    .main-home-container {
+        grid-template-columns: 100vw;
+    }
+
+    .main-home-blank-section,
+    .suggestions-section {
+        display: none;
+    }
+
+    .post-stories-section {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .stories-section,
+    .post-sections {
+        width: 95vw;
+
+    }
+
+}

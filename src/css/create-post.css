@@ -1,0 +1,139 @@
+.create-post-main-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.create-post-container {
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    width: 60vw;
+    margin: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px rgba(31, 30, 30, 0.3);
+
+}
+
+.create-post-section {
+    width: 100%;
+}
+
+.selected-file-viewer {
+    position: relative;
+    margin: 25px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.caption-field {
+    resize: none;
+    width: 50vw;
+}
+
+.create-post-btn {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    width: 125px;
+    height: 50px;
+    cursor: pointer;
+    background-color: rgb(2, 85, 105);
+    border: 0.5px solid rgba(82, 80, 80, 0.5);
+    box-sizing: border-box;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.create-post-btn:hover {
+    background-color: rgba(2, 85, 105, 0.5);
+    border: 0.5px solid rgba(82, 80, 80, 0.5);
+    box-sizing: border-box;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.create-post-btn:disabled {
+    background-color: #ccc;
+    transition: all 0.3s ease-in-out;
+}
+
+.select-file {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    min-width: 125px;
+    padding: 5px;
+    cursor: pointer;
+    background-color: rgb(2, 85, 105);
+    border: 0.5px solid rgba(82, 80, 80, 0.5);
+    box-sizing: border-box;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.popup-view-post-container-disable {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.popup-view-post-container-active {
+    position: fixed;
+    width: 125px;
+    right: 25px;
+    bottom: 50px;
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+}
+.popup-view-post-container-active >a{
+    color: white;
+    text-decoration: none;
+    background-color: tomato;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 7px;
+    border-radius: 3px;
+}
+
+@media screen and (max-width:600px) {
+
+    .create-post-container {
+        width: 98vw;
+    }
+
+    .create-post-btn {
+        width: 100px;
+    }
+
+    .select-file {
+        width: 100px;
+    }
+    .popup-view-post-container-active{
+        top:  125px;
+        z-index: 999;
+        right: 5px;
+    }
+    .popup-message-show{
+        bottom:   15px;
+        width: 100vw;
+        z-index: 999;
+        left: 5px;
+    }
+    
+}
