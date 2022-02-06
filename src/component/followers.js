@@ -143,7 +143,7 @@ function Follower(props) {
             </div>
             <div className="dashboard-followers-list">
                 {isLoading ? <h1>Loading...</h1> :
-                    follower.length == 0 ? <><h1>No followers</h1></> :
+                    follower.length === 0 ? <><h1>No followers</h1></> :
                         follower.map((follower, index) => {
                             return <FollowerListRender follower={follower} key={index} />
                         })

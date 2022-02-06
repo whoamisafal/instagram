@@ -1,10 +1,10 @@
 var mysql=require('mysql')
-
+//H)U@<NFX264!gW#6
 var mysqlConnection=mysql.createConnection({
     host:'localhost',
-    user:'safalsth_Instagram',
-    password:'H)U@<NFX264!gW#6',
-    database:'safalsth_db_instagram',
+    user:'root',
+    password:'',
+    database:'db_instagram',
     multipleStatements:true
 
 })

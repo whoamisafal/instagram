@@ -1,9 +1,8 @@
 
-import Cookies from 'js-cookie';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import LoginAndSignup from './component/loginandsignup';
-import InstaMenu, { MobileViewInstaMenu } from './component/menu';
+import InstaMenu from './component/menu';
 import UserSearchNavSec from './component/usersearch';
 import './css/navbar.css';
 

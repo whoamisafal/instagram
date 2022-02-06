@@ -18,7 +18,6 @@ function DashboardPostItem(props) {
 
     let style={
         containerStyle:{
-            boxShadow:"0px 0px 5px #ccc",
             height:'175px',
             width:'175px',
             userSelect:'none',

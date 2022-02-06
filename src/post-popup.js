@@ -81,11 +81,24 @@ function PopupMenuPost(props) {
         let copyText = document.getElementById("copylink").value;
         let location = window.location.href;
         let url = location.substring(0, location.lastIndexOf('/'));
-        navigator.clipboard.writeText(url + copyText).then(function () {
-           setIsCopied(true);
-        }).catch(function (err) {
-            console.log('Something went wrong', err);
-        })
+        // navigator.clipboard.writeText(url + copyText).then(function () {
+        //    setIsCopied(true);
+        // }).catch(function (err) {
+        //     console.log('Something went wrong', err);
+        // })
+        if (navigator.clipboard != undefined) {//Chrome
+            navigator.clipboard.writeText(url).then(function () {
+                setIsCopied(true);
+            }, function (err) {
+                console.error('Async: Could not copy text: ', err);
+            });
+        }
+        else if(window.clipboardData) { // Internet Explorer
+            window.clipboardData.setData("Text", url);
+            setIsCopied(true);
+        }
+
+
 
     }
     const unfollow = () => {

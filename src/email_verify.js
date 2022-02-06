@@ -24,10 +24,10 @@ function EmailVerification(props) {
     let [isresend, setResend] = useState(false)
     let [messageResend, setMessageResend] = useState('')
     let [message, setMessage] = useState("")
-    let [isVerified, setVerified] = useState(false)
+  let [isVerified, setVerified] = useState(false)
     let [counter, setCounter] = useState(60)
 
-    let codeLen = 6
+    const codeLen = 6
 
 
 

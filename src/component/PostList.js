@@ -17,7 +17,7 @@ function ImageView(props) {
         //("Liked");
     }
     return <>
-        <img src={HOST_URL + "/" + post.url} draggable={false} decoding="auto" crossOrigin="anonymous" onDoubleClick={handleDoubleClick} draggable={false} className={className} height={height + "px"} id="image-post-view" />
+        <img src={HOST_URL + "/" + post.url} alt="" draggable={false} decoding="auto" crossOrigin="anonymous" onDoubleClick={handleDoubleClick} draggable={false} className={className} height={height + "px"} id="image-post-view" />
     </>
 }
 function VideoView(props) {
@@ -87,7 +87,7 @@ function PostHeader(props) {
     // let [smallView, setSmallView] = React.useState(false);
     useEffect(() => {
         axios.get(HOST_URL + "/get_user?userId=" + pc_userId).then(res => {
-            if (res.status == 200) {
+            if (res.status === 200) {
                 setIsLoading(false);
                 setUser(res.data);
             }
@@ -124,7 +124,7 @@ function PostHeader(props) {
             isClicked ? <PopupMenuPost post={post} currentUid={currentUid} close={close} message={message} /> : null
         }
         <div className="post-header-left">
-            <img src={HOST_URL + "/" + user.profile} decoding="auto" crossOrigin="anonymous" draggable={false} className="post-header-profile-picture" />
+            <img src={HOST_URL + "/" + user.profile} alt="" decoding="auto" crossOrigin="anonymous" draggable={false} className="post-header-profile-picture" />
             <Link to={"/" + user.username} className="post-header-username"
                 style={{ color: "black", textDecoration: "none" }}
             >{user.username}</Link>
@@ -180,8 +180,8 @@ function PostList(props) {
                 <div className="post-view">
                     {
                         len > 1 ? <div className="slider-arrow-container">
-                            {slideIndex == 0 ? <div></div> : <ButtonSliderArrow className="slider-arrow-left" handler={prevSlide} />}
-                            {slideIndex == len - 1 ? <div></div> : <ButtonSliderArrow className="slider-arrow-right" handler={nextSlide} />}
+                            {slideIndex === 0 ? <div></div> : <ButtonSliderArrow className="slider-arrow-left" handler={prevSlide} />}
+                            {slideIndex === len - 1 ? <div></div> : <ButtonSliderArrow className="slider-arrow-right" handler={nextSlide} />}
                         </div> : null
                     }
                     {
@@ -195,9 +195,9 @@ function PostList(props) {
                         post && Array.from(post).map((p, index) => {
 
                             if (p.mimetype.match(/image/)) {
-                                return <ImageView key={index} height={height} className={slideIndex == index ? "active-slide" : "slide"} post={p} length={len} />
+                                return <ImageView key={index} height={height} className={slideIndex === index ? "active-slide" : "slide"} post={p} length={len} />
                             } else if (p.mimetype.match(/video/)) {
-                                return <VideoView height={height} className={slideIndex == index ? "active-slide" : "slide"} key={index} post={p} length={len} />
+                                return <VideoView height={height} className={slideIndex=== index ? "active-slide" : "slide"} key={index} post={p} length={len} />
                             }
                             return <>Something went wrong</>
                         })

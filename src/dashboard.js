@@ -32,7 +32,7 @@ class Dashbaord extends React.Component {
 
         this.state = {
             selected: 0,
-            profileurl: profile != undefined ? profile : "https://upload.wikimedia.org/wikipedia/commons/3/3c/IMG_logo_%282017%29.svg",
+            profileurl: profile !== undefined ? profile : "https://upload.wikimedia.org/wikipedia/commons/3/3c/IMG_logo_%282017%29.svg",
             userId: 0,
             username: "insta_user",
             fullname: "insta_user",
@@ -213,7 +213,7 @@ class Dashbaord extends React.Component {
                     <div className="main-container-user-information">
 
                         <section className="profile-section">
-                            <img src={baseUrl + "/" + this.state.profileurl} className="current-user-profile" />
+                            <img src={baseUrl + "/" + this.state.profileurl} alt="" className="current-user-profile" />
                         </section>
 
                         <section className="user-information-section">

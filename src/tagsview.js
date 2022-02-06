@@ -26,7 +26,7 @@ function TagPostView(props) {
 function TagView(props) {
     let tag = props.match.params.tag;
     let [data, setData] = React.useState([]);
-    let [isLoading, setIsLoading] = React.useState(true);
+ let [isLoading, setIsLoading] = React.useState(true);
     let [isError, setIsError] = React.useState(false);
     let [isImage, setIsImage] = React.useState(false);
     let [imageurl, setImageurl] = React.useState('');
@@ -40,7 +40,7 @@ function TagView(props) {
         })
             .then(res => {
                 if (res.status === 200) {
-                    if (res.data.status == 200) {
+                    if (res.data.status === 200) {
                         setData(res.data.posts);
                         setIsLoading(false);
                         if (res.data.posts.length > 0) {
@@ -72,20 +72,20 @@ function TagView(props) {
         <div className="tag-main-container">
             <header className="tag-view-header">
                 <div className="tag-view-header-left-side">
-                 {isImage? <img src={HOST_URL + "/" + imageurl} draggable={false} className="tag-view-header-image" />:null}
+                 {isImage? <img src={HOST_URL + "/" + imageurl} alt="" draggable={false} className="tag-view-header-image" />:null}
                 {!isImage? <video src={HOST_URL + "/" + imageurl} draggable={false}  className="tag-view-header-video"></video>:null}
                 </div>
                 <div className="tag-view-header-right-side">
                     <h1>{"#" + tag}</h1>
                     <div className="tag-post-count">
-                        {data && data.length > 1 ? data && data.length + " posts" : data && data.length == 1 ? "1 post" : "No posts"}
+                        {data && data.length > 1 ? data && data.length + " posts" : data && data.length === 1 ? "1 post" : "No posts"}
                     </div>
                 </div>
 
             </header>
             <div className="tag-main-content">
                 <div><p className="tag-post">Posts</p></div>
-                {data && data.length == 0 ? <h1>No posts</h1> :
+                {data && data.length === 0 ? <h1>No posts</h1> :
                     <div className="tag-post-contents">
                         {data && data.map((post, index) => {
                             return <TagPostView post={post} key={index} />

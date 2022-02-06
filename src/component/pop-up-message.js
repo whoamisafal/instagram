@@ -86,7 +86,7 @@ export function PopupViewPost(props) {
         return <div className="popup-view-post-container-disable"></div>
     }
     return <div className="popup-view-post-container-active">
-        <a href={url} target="_blank">{"View post"}</a>
+        <a href={url} rel="noopener noreferrer" target="_blank">{"View post"}</a>
     </div>
 
 

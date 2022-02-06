@@ -27,12 +27,12 @@ function PostFooter(props) {
     let timestamp = post[0].timestamp;
     let [isLiked, setIsLiked] = React.useState(false);
     let [isSaved, setIsSaved] = React.useState(false);
-    let [commentParentId, setCommentParentId] = React.useState(0);
+  let [commentParentId, setCommentParentId] = React.useState(0);
     let [commentCount, setCommentCount] = React.useState(0);
     let [comment, setComment] = React.useState("");
     let [customdate, setcustomDate] = React.useState('');
-    let [isAuth, setIsAuth] = React.useState(Cookies.get('token') !== undefined);
-    let [canShowNotLoggedIn, setCanShowNotLoggedIn] = React.useState(false);
+     let [isAuth, setIsAuth] = React.useState(Cookies.get('token') !== undefined);
+   let [canShowNotLoggedIn, setCanShowNotLoggedIn] = React.useState(false);
     let [isMounted, setIsMounted] = React.useState(true);
    
     useEffect(() => {
@@ -43,7 +43,7 @@ function PostFooter(props) {
                 'Content-Type': 'application/json'
             }
         }).then(res => {
-            if (res.status == 200) {
+            if (res.status === 200) {
                 setIsLiked(res.data.isLike);
                 setIsSaved(res.data.isSaved);
                 setCommentCount(res.data.commentCount);
@@ -119,7 +119,7 @@ function PostFooter(props) {
                 'Authorization': 'Bearer ' + Cookies.get('token')
             }
         }).then(res => {
-            if (res.status == 200) {
+            if (res.status === 200) {
                 //("Liked");
             }
         }).catch(err => {
@@ -140,7 +140,7 @@ function PostFooter(props) {
                 'Authorization': 'Bearer ' + Cookies.get('token')
             }
         }).then((res) => {
-            if (res.status == 200) {
+            if (res.status === 200) {
                 setIsSaved(!isSaved);
             }
         })
@@ -167,7 +167,7 @@ function PostFooter(props) {
                 'Authorization': 'Bearer ' + Cookies.get('token')
             }
         }).then(res => {
-            if (res.status == 200) {
+            if (res.status === 200) {
                setComment('');
                setCommentCount(commentCount+1);
             }
@@ -209,10 +209,10 @@ function PostFooter(props) {
             </div>
         </div>
         <div className="footer-post-description">
-            { calledFrom=="postviewer"?<></>:  <div dangerouslySetInnerHTML={{ __html: caption }} />}
+            { calledFrom==="postviewer"?<></>:  <div dangerouslySetInnerHTML={{ __html: caption }} />}
            <div>
                {
-                calledFrom=="postviewer"?<></>:   commentCount>0? <a href={postUrl} style={style.linkStyle1}>{commentCount>1?"View all "+commentCount+" comments":"View "+commentCount+" comment"}</a>:null
+                calledFrom==="postviewer"?<></>:   commentCount>0? <a href={postUrl} style={style.linkStyle1}>{commentCount>1?"View all "+commentCount+" comments":"View "+commentCount+" comment"}</a>:null
                }
            </div>
             <a href={postUrl} style={style.linkStyle} >{customdate}</a>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { NavLink, Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import HOST_URL from "./proxy";
 
 
@@ -60,7 +60,7 @@ function VerifyCode(props) {
 
     }, [ucode])
 
-    onchange = (e) => {
+  const  onchange = (e) => {
         let value = e.target.value
         if (value === '' || value === ' ') {
             return
@@ -140,7 +140,8 @@ function VerifyCode(props) {
     }
 
     if (isVerified) {
-        return <Redirect to={'/create/new/password/' + passwordChangeCode} />
+        window.location.href = '/create/new/password/' + passwordChangeCode
+//return <Redirect to={'/create/new/password/' + passwordChangeCode} />
     }
 
     return <>
@@ -160,6 +161,11 @@ function VerifyCode(props) {
                     <p>
                         {message}
                     </p>
+                </div>
+                <div>
+                    <NavLink to="/login" className="reset-password-link">
+                        Go Back
+                    </NavLink>
                 </div>
             </div>
 

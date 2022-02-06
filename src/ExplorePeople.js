@@ -68,25 +68,7 @@ class ExplorePeople extends React.Component {
         this.getExplorePeople();
       //  document.addEventListener('scroll', this.handleScroll);
     }
-    handleScroll = () => {
-
-        const bottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight
-
-        // if (bottom) {
-         
-        //         setTimeout(()=>{
-        //             if(this.state.reachLimit===false){
-        //                 this.setState({
-        //                     isFooterLoading: true,
-                        
-        //                 })
-        //             this.getExplorePeople()
-        //         }
-        //         },1500)
-           
-           
-        // }
-    };
+   
     componentWillUnmount() {
        // document.removeEventListener('scroll', this.handleScroll);
     }

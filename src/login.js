@@ -22,7 +22,7 @@ class Login extends React.Component {
             message: '',
             btnState: true
         };
-        const { cookies } = props;
+    
 
 
         this.onChangePassword = this.onChangePassword.bind(this);

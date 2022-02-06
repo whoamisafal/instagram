@@ -3,7 +3,7 @@ import axios from "axios";
 import HOST_URL from "../proxy";
 
 import Cookies from 'js-cookie'
-import Toast from "./toast";
+
 
 //Here followers means current user's followers
 //userid means the visited profile ids
@@ -15,7 +15,7 @@ function FollowAndFollowing(props) {
     let [currentUid, setCurrentUid] = React.useState(0)
     let [userId, setUserId] = React.useState(0)
     let token = Cookies.get('token');
-    let isAuth = token == undefined ? false : true;
+    let isAuth = token === undefined ? false : true;
     let calledFrom = props.calledFrom;
     let user = props.user;
     let account_visiblity = props.user.account_visiblity;
@@ -134,7 +134,7 @@ function FollowAndFollowing(props) {
         <div className={calledFrom}>
             <button onClick={handleClick} style={calledFrom === "callFromPostView" ?
                 style.followStyle1 : style.followStyle}>{!isAuth ? "Follow" :
-                    isLoading ? "Loading..." : isfollowing ? account_visiblity == "private" ? "Requested" :
+                    isLoading ? "Loading..." : isfollowing ? account_visiblity === "private" ? "Requested" :
                         "Following" : isfollowing ? "Following" : Array.from(followers).includes(userId) ? "Follow back" : "Follow"
                 }
 
