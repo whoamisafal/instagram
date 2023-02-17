@@ -61,7 +61,7 @@ class NavBar extends React.Component {
       <nav className="instagram-navbar-menu-container" onClick={this.close}>
         {/* Title Section */}
         <section className="title-section">
-          <h1><Link to="/">Instagram</Link></h1>
+          <h1><Link to="/">Vibe-Nep</Link></h1>
         </section>
 
         {/* Search Section */}

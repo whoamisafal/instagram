@@ -4,7 +4,6 @@ import Cookies from "js-cookie";
 import React, { useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-
 import './css/register.css'
 import HOST_URL from "./proxy";
 
@@ -115,7 +114,7 @@ function EmailSignUp(props) {
                 <section className="register-form-section">
 
                     {/* App Name Section */}
-                    <div className="app-name-section-register"><h1>Instagram</h1></div>
+                    <div className="app-name-section-register"><h1>Vibe-Nep</h1></div>
                     {/* App Description section */}
                     <p className="short-page-description">
                         Sign up to see photos and videos from your friends.

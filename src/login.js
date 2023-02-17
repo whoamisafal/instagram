@@ -156,7 +156,7 @@ class Login extends React.Component {
                     <section className="login-form-section">
 
                         {/* App Name Section */}
-                        <div className="app-name-section-login"><h1>Instagram</h1></div>
+                        <div className="app-name-section-login"><h1>Vibe-Nep</h1></div>
 
 
 

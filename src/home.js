@@ -8,6 +8,7 @@ import PostList from './component/PostList';
 import Suggestion from './component/suggestions';
 import Toast from './component/toast';
 import './css/home.css';
+import Loading from './loading';
 
 import HOST_URL from './proxy';
 
@@ -37,7 +38,7 @@ function Home(props) {
  
 
   
-    document.getElementsByTagName("title")[0].innerHTML = "Instagram";
+    document.getElementsByTagName("title")[0].innerHTML = "Vibe-Nep";
 
     const handlleScroll = useCallback(() => {
         const bottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight
@@ -179,7 +180,7 @@ function Home(props) {
                         isLoading ? <></> : posts && posts.length == 0 ? <Suggestion key={'suggestions'} type={'scroll-bar'} /> : null
                     }
                     {
-                        isLoading ? <>Loading...</> : posts && Array.from(posts).map((post, index) => {
+                        isLoading ? <Loading></Loading>: posts && Array.from(posts).map((post, index) => {
                             if (index == 5 || index == 25) {
                                 return <PostAndSuggestionListItem key={post[0].postId} index={index} post={post} userId={userId} />
                             }

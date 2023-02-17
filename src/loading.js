@@ -5,7 +5,7 @@ import React from "react";
 function Loading(){
     return <>
     <div className="loading-container">
-    <img src="https://img.icons8.com/color/144/000000/instagram-new--v2.png"/>
+    <img src="logo.jpg" height="64px" width="64px"/>
     </div>
     </>
 

@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const http = require('http').createServer(app)
 const port = 8000
+var sharp = require("sharp")
 var register = require('./model/register')
 var login = require('./model/login')
 var searchuser = require('./model/searchuser')
@@ -14,9 +15,11 @@ const helper = require('./model/helper')
 const chat = require('./model/chat')
 const MessageStructure = require('./model/chat')
 const jwt = require('jsonwebtoken')
-
+const fs = require("fs")
 const { sendMail } = require('./model/sendMail')
 const md5 = require('md5')
+const { mkdir } = require('fs')
+const { time } = require('console')
 
 
 app.set('assets', path.join(__dirname, 'assets'));
@@ -98,7 +101,6 @@ const extension = (mimetype) => {
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-
         cb(null, './assets/media/images/profile')
     },
     filename: function (req, file, cb) {
@@ -143,7 +145,6 @@ app.get('/assets/media/images/profile/:filename', (req, res) => {
 
 app.get('/assets/media/videos/:filename', (req, res) => {
     const filename = req.url.split('/').pop()
-
     res.sendFile(path.join(__dirname, '/assets/media/videos', filename))
 })
 
@@ -416,7 +417,7 @@ app.get('/explore/people', AuthenticationToken, async (req, res) => {
 })
 
 app.post('/upload_profile', AuthenticationToken, async (req, res) => {
-    upload(req, res, function (err) {
+    upload(req, res,async function (err) {
         if (err instanceof multer.MulterError) {
             ////console.log"Multer Error" + err);
             return res.status(500).json(err)
@@ -424,19 +425,33 @@ app.post('/upload_profile', AuthenticationToken, async (req, res) => {
             ////console.log" Error" + err);
             return res.status(500).json(err)
         }
+        try {
+            const {file} =req
+        if (!file) {
+            return res.status(400).json({ success: false, message:  'file not supplied' });
+            }
+            const reg = /\d[0-9]/g
+            const timestamp = new Date().getTime()
+            const newFile = file.path.replace(reg,timestamp)
+            // save newFilePath in your db as image path
+            await sharp(file.path).resize().jpeg({ quality: 60 
+                     }).toFile(newFile);
+            fs.unlinkSync(file.path);
+
         // ////console.logreq.file.path);
-        var profileUrl = req.file.path.replace(/..\\public/g, "")
+        var profileUrl = newFile.replace(/..\\public/g, "")
 
         register.updateProfile(req.user.userId, profileUrl)
-
             .then(result => {
                 if (result) {
                     return res.status(200).send({ status: 200, message: "Profile updated", url: profileUrl })
-                } else {
-                    return res.status(403).send({ status: 403, message: "Something went wrong" })
-                }
+                } 
             })
 
+        } catch (error) {
+            console.log(error);
+            return res.status(403).send({ status: 403, message: "Something went wrong" }) 
+        }
 
 
     })
@@ -1169,7 +1184,7 @@ app.post('/send_reset_password_code', async (req, res) => {
             res.end()
         } else {
             let code = result.code
-            sendMail(email, "Reset Password Code", "<h1>Your reset password code is <span style={'background:red;'}>" + code + "</span> <h1>")
+            sendMail(email, "Reset Password Code", "<h3>Your reset password code is </h3> <span style={'background-color:blue;'}>" + code + "</span>")
                 .then((sres) => {
 
                     if (sres !== null) {

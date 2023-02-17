@@ -230,7 +230,7 @@ export function RemoveFollower(props) {
                         </h2>
                         <p style={style.p}>
                             {
-                                "Instagram won't tell " + user.username + " they were removed from your followers"
+                                "Vibe-Nep won't tell " + user.username + " they were removed from your followers"
                             }
                         </p>
                     </div>

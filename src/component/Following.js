@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import HOST_URL from "../proxy";
 import Cookies from 'js-cookie'
 import { useHistory } from 'react-router-dom'
-import FollowAndFollowing,{RemoveFollowing} from "./follow-following";
+import {RemoveFollowing} from "./follow-following";
 
 
 function FollowingListRender(props) {

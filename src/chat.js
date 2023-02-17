@@ -481,13 +481,12 @@ function MessageView(props) {
     let currentUserId = props.userId
     let [customTime, setCustomTime] = useState('')
     let sentMessageTimestamp = message.timestamp
-
     setInterval(() => {
         let currentTimestamp = new Date().getTime()
         let timeDiff = currentTimestamp - sentMessageTimestamp
-        let customTime = helper.getCustomTime(timeDiff)
-        setCustomTime(customTime)
-    }, 1000)
+       let  current_custom_time = helper.getCustomTime(timeDiff)
+        setCustomTime(current_custom_time)
+    }, 5000)
 
 
 

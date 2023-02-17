@@ -34,8 +34,8 @@ class Dashbaord extends React.Component {
             selected: 0,
             profileurl: profile !== undefined ? profile : "https://upload.wikimedia.org/wikipedia/commons/3/3c/IMG_logo_%282017%29.svg",
             userId: 0,
-            username: "insta_user",
-            fullname: "insta_user",
+            username: "vibe_nep",
+            fullname: "vibe-nep",
             bio: "",
             website: "",
             posts: 0,
@@ -255,9 +255,6 @@ class Dashbaord extends React.Component {
                             </div>
 
                         </section>
-
-
-
                     </div>
                     {/* End Section */}
                     {/* Divider */}

@@ -178,6 +178,9 @@ function Suggestion(props) {
         }
 
     }
+    if(suggestions.length<1){
+        return <></>
+    }
 
     if (type === 'scroll-bar') {
         return <>

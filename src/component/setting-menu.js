@@ -13,11 +13,7 @@ function SettingMenu(){
                 <li>
                     <NavLink to="/accounts/password/change" activeClassName="active">Change Password</NavLink>
                     </li>
-               
             </ul>
-    
-
-
         </nav>
     
     </>
