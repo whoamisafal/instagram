@@ -95,7 +95,7 @@ function Following(props) {
     let history = useHistory();
     let [follower, setFollower] = React.useState([]);
     let [isLoading, setIsLoading] = React.useState(true);
-    let [isPrivateAccount, setIsPrivateAccount] = React.useState(false);
+    //let [isPrivateAccount, setIsPrivateAccount] = React.useState(false);
     let [userId, setUserId] = React.useState(0);
     let [username, setUsername] = React.useState('');
 
@@ -147,7 +147,7 @@ function Following(props) {
             </div>
             <div className="dashboard-following-list">
                 {isLoading ? <h1>Loading...</h1> :
-                    follower.length == 0 ? <><h1>No Following</h1></> :
+                    follower.length === 0 ? <><h1>No Following</h1></> :
                         follower.map((follower, index) => {
                             return <FollowingListRender follower={follower} key={index} />
                         })

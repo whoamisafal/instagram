@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import axios from "axios";
 import Cookies from "js-cookie";
 import React from "react";
@@ -10,7 +11,7 @@ import {
 } from "react-router-dom";
 import DashboardPosts from "./component/dashboard-post";
 import FollowAndFollowing from "./component/follow-following";
-import SuggestsToLogin from "./component/loginsuggestion";
+//import SuggestsToLogin from "./component/loginsuggestion";
 import UserNotLogin from "./notlogin";
 import HOST_URL from "./proxy";
 
@@ -109,7 +110,7 @@ class OtherUserProfile extends React.Component {
                     isLoading: false
                 })
                 this.getFollowerAndFollowingCount()
-                this.getAllFollowingIds()
+               
             }
         }).catch(err => {
             console.log(err);
@@ -177,7 +178,7 @@ class OtherUserProfile extends React.Component {
                 <div className="main-container-user-information">
 
                     <section className="profile-section">
-                        <img draggable={false} src={HOST_URL + "/" + this.state.profile} className="current-user-profile" />
+                        <img alt="" draggable={false} src={HOST_URL + "/" + this.state.profile} className="current-user-profile" />
                     </section>
 
                     <section className="user-information-section">

@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import './css/dashboard.css';
@@ -116,6 +117,7 @@ class Dashbaord extends React.Component {
     handleClickMenu = (e) => {
     }
     handleFileSelection = (e) => {
+       
         e.preventDefault();
         let files = e.target.files;
         this.setState({
@@ -128,33 +130,32 @@ class Dashbaord extends React.Component {
 
 
     }
-    async uploadProfile(file) {
+     uploadProfile(file) {
         let formData = new FormData();
         formData.append('profile', file);
-
-        let result = await axios.post(HOST_URL + '/upload_profile', formData, {
+      
+      axios.post(HOST_URL + '/upload_profile', formData, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + Cookies.get('token')
             }
+        }).then((result)=>{
+            if (result.data.status === 200) {
+                console.log(result.data);
+                this.setState({
+                    updateProfile: true,
+                    profileurl: result.data.url,
+                    message: {
+                        title: "Success",
+                        message: "Update profile successfully",
+                        status: true
+                    }
+                })
+            } else {
+                    
+            }
         });
-        if (result.status === 200) {
-            console.log(result.data);
-            this.setState({
-                updateProfile: true,
-                profileurl: result.data.url,
-
-                message: {
-                    title: "Success",
-                    message: "Update profile successfully",
-                    status: true
-                }
-            })
-        } else {
-
-        }
-
-
+       
 
     }
     handleClick = () => {
@@ -251,7 +252,7 @@ class Dashbaord extends React.Component {
                             <div className="user-fullname-bio-website-field">
                                 <h3>{this.state.fullname}</h3>
                                 <span>{this.state.bio}</span>
-                                <a href={"https://" + this.state.website} target="_blank">{this.state.website}</a>
+                                <a href={'https://'+ this.state.website} rel="noreferrer" target="_blank">{this.state.website}</a> 
                             </div>
 
                         </section>

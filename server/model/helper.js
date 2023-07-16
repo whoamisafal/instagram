@@ -1,10 +1,8 @@
+/* eslint-disable no-loop-func */
 const connection = require('./dbconnection');
 var md5 = require('md5');
 const mysqlConnection = require('./dbconnection');
-const { func } = require('prop-types');
 const register = require('./register');
-const { resolve } = require('path/posix');
-const { sendMail } = require('./sendMail');
 exports.getFollowerCount = function (userId) {
     let val = 0
     const query = "SELECT COUNT(*) as count FROM followers WHERE followed_to=? AND isFollowRequest=?";
@@ -54,7 +52,7 @@ exports.getFollowingCount = function (userId) {
 
 exports.changePassword = function (userId, oldPassword, newPassword, confirmPassword) {
     //console.loguserId, oldPassword, newPassword, confirmPassword);
-    if (newPassword != confirmPassword) {
+    if (newPassword !== confirmPassword) {
         //console.log"password not matched");
         return new Promise(function (resolve, reject) {
             resolve({
@@ -124,19 +122,14 @@ exports.changePassword = function (userId, oldPassword, newPassword, confirmPass
 
 //get all the followers 
 exports.getFollowers = function (userId) {
-
+    //console.log(userId);
     const query = "SELECT user.username,user.fullname,user.userId,user.profile FROM user join followers ON user.userId=followers.followed_by WHERE followed_to=? AND isFollowRequest=?";
     return new Promise(function (resolve, reject) {
         connection.query(query, [parseInt(userId), 0], function (err, result) {
             if (err)
                 reject(false);
-            resolve(result)
-
+                resolve(result)
         })
-    }).then(function (result) {
-        return result;
-    }).catch(function (err) {
-        return false
     })
 }
 
@@ -251,7 +244,7 @@ exports.postStatus = function (userId, username, tags, files, caption) {
 
                 }
 
-                if (success == len) {
+                if (success === len) {
 
                     let query2 = "INSERT into hashtag(postId,value) VALUES(?,?)"
                     let hashArray = tags.split(',')
@@ -260,7 +253,7 @@ exports.postStatus = function (userId, username, tags, files, caption) {
 
                     let hashSuccess = 0
 
-                    if (hashStatus != 'null') {
+                    if (hashStatus !== 'null') {
 
                         for (let i = 0; i < hashLen; i++) {
                             connection.query(query2, [
@@ -279,7 +272,7 @@ exports.postStatus = function (userId, username, tags, files, caption) {
 
                                 }
                                 hashSuccess++
-                                if (hashSuccess == hashLen) {
+                                if (hashSuccess === hashLen) {
                                     connection.commit(function (err) {
                                         if (err) {
                                             //console.logerr);
@@ -347,7 +340,7 @@ exports.postStatus = function (userId, username, tags, files, caption) {
 }
 
 //get All the following Id
-getAllFollowingIds = function (userId) {
+const getAllFollowingIds = function (userId) {
     const query = "SELECT user.userId FROM user join followers ON user.userId=followers.followed_to WHERE followed_by=? AND isFollowRequest=?";
     return new Promise(function (resolve, reject) {
         connection.query(query, [parseInt(userId), 0], function (err, result) {
@@ -412,7 +405,7 @@ exports.createChat = function (userId, chatWith) {
                 reject(false);
             }
 
-            if (result.length == 0) {
+            if (result.length === 0) {
                 mysqlConnection.query(query, [timestamp, userId, id, 0, 0], (err, result) => {
                     if (err) {
                         console.log(err);
@@ -476,7 +469,7 @@ exports.likePost = function (postId, userId, currentUserId) {
             let query1 = "SELECT * FROM " + table + " WHERE postId=? AND liked_by=?"
             mysqlConnection.query(query1, [postId, currentUserId], (err, result) => {
                 if (err) reject(err)
-                if (result.length == 0) {
+                if (result.length === 0) {
                     // if the user has not liked the post
                     let query2 = "INSERT INTO " + table + "(postId,liked_by,pc_by,timestamp) VALUES(?,?,?,?)"
                     mysqlConnection.query(query2, [postId, currentUserId, userId, timestamp], (err, result) => {
@@ -749,7 +742,7 @@ exports.getSuggestions = async function (userId) {
     let suggestedUserInfos = []
     let userInfos = []
     //Get the user info of all the user which is not following by you
-    if (followingIds != false) {
+    if (followingIds !== false) {
         userInfos = await getAllUserWhoFollowedByYourFollowingIds(allIds, userId)
     }
 
@@ -757,20 +750,20 @@ exports.getSuggestions = async function (userId) {
 
 
     // Fetch the new user info which is not following by you
-    if (userInfos != false) {
+    if (userInfos !== false) {
         for (let index = 0; index < userInfos.length; index++) {
             allIds.push(userInfos[index].userId)
             suggestedUserInfos.push(userInfos[index])
         }
         newUserInfos = await getLimitedNewUsers(userId, allIds, 7)
-        if (newUserInfos != false) {
+        if (newUserInfos !== false) {
             for (let index = 0; index < newUserInfos.length; index++) {
                 suggestedUserInfos.push(newUserInfos[index])
             }
         }
     } else {
         newUserInfos = await getLimitedNewUsers(userId, allIds, 15)
-        if (newUserInfos != false) {
+        if (newUserInfos !== false) {
             for (let index = 0; index < newUserInfos.length; index++) {
                 suggestedUserInfos.push(newUserInfos[index])
             }
@@ -962,7 +955,7 @@ exports.sendResetPasswordCode = function (email) {
 
     }).then((result) => result).catch((err) => {
         console.log(err);
-        false
+        return false
     })
 
 

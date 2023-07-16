@@ -5,7 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import PostFooter from "./postFooter";
 import PopupMenuPost from "../post-popup";
-import Toast from "./toast";
+//import Toast from "./toast";
 
 
 
@@ -17,7 +17,7 @@ function ImageView(props) {
         //("Liked");
     }
     return <>
-        <img src={HOST_URL + "/" + post.url} alt="" draggable={false} decoding="auto" crossOrigin="anonymous" onDoubleClick={handleDoubleClick} draggable={false} className={className} height={height + "px"} id="image-post-view" />
+        <img src={HOST_URL + "/" + post.url} alt="" draggable={false} decoding="auto" crossOrigin="anonymous" onDoubleClick={handleDoubleClick}  className={className} height={height + "px"} id="image-post-view" />
     </>
 }
 function VideoView(props) {

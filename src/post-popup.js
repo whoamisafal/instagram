@@ -49,7 +49,7 @@ function PopupMenuPost(props) {
     useEffect(() => {
         if(isMounted)
         axios.get(HOST_URL + "/get_user?userId=" + post[0].userId).then(res => {
-            if (res.status == 200) {
+            if (res.status === 200) {
                 setUser(res.data);
             }
 
@@ -86,7 +86,7 @@ function PopupMenuPost(props) {
         // }).catch(function (err) {
         //     console.log('Something went wrong', err);
         // })
-        if (navigator.clipboard != undefined) {//Chrome
+        if (navigator.clipboard !== undefined) {//Chrome
             navigator.clipboard.writeText(url).then(function () {
                 setIsCopied(true);
             }, function (err) {

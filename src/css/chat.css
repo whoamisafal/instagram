@@ -432,12 +432,20 @@
 .message-send-by-current-user{
     text-align: center;
     margin: 11px;
+    padding: 7px;
+    border-radius: 11px;
     max-width: 50%;
+    color: white;
+    background-color: rgb(31, 29, 29);
     word-wrap: break-word;
 }
 .message-send-by-other-user{
     max-width: 50%;
     word-wrap: break-word;
+    padding: 7px;
+    background-color: grey;
+    color: white;
+    border-radius: 7px;
 }
 
 

@@ -38,7 +38,7 @@ function DashboardPostItem(props) {
     {/* <div className="dashbaord-post-item-container" style={style.containerStyle}> */}
         <a href={item.postUrl}  style={style.containerStyle} > 
         {
-            item.mimetype.match(/image/) ?<img className="dashboard-post-item-image" draggable={false} style={style.itemStyle} src={HOST_URL+"/"+item.url} /> : null
+            item.mimetype.match(/image/) ?<img alt="" className="dashboard-post-item-image" draggable={false} style={style.itemStyle} src={HOST_URL+"/"+item.url} /> : null
         }
         {
             item.mimetype.match(/video/) ? <video className="dashboard-post-item-video" draggable={false} style={style.itemStyle}  src={HOST_URL+"/"+item.url} /> : null
@@ -66,7 +66,7 @@ function DashboardPosts(props) {
 
                 }
             }).then(res => {
-                if (res.status == 200) {
+                if (res.status === 200) {
                     setPosts(res.data.posts);
                     setLoading(false);
                   
@@ -77,7 +77,7 @@ function DashboardPosts(props) {
                 setErrorMessage(err.message);
             })
         }
-        else if (calledFrom == "dashboard_post") {
+        else if (calledFrom === "dashboard_post") {
             axios.get("/currentuser_posts", {
                 headers: {
                     'Content-Type': 'application/json',
@@ -131,8 +131,7 @@ function DashboardPosts(props) {
                         if(data.status===403){
                             setLoading(false);
                             setError(true);
-                            setErrorMessage(data.message);
-                          
+                            setErrorMessage(data.message);     
                         }else{
                             setError(true);
                             setErrorMessage("Something went wrong");

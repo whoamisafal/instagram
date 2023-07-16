@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -177,11 +178,11 @@ function Home(props) {
 
                 <section className="post-sections">
                     {
-                        isLoading ? <></> : posts && posts.length == 0 ? <Suggestion key={'suggestions'} type={'scroll-bar'} /> : null
+                        isLoading ? <></> : posts && posts.length === 0 ? <Suggestion key={'suggestions'} type={'scroll-bar'} /> : null
                     }
                     {
                         isLoading ? <Loading></Loading>: posts && Array.from(posts).map((post, index) => {
-                            if (index == 5 || index == 25) {
+                            if (index === 5 || index === 25) {
                                 return <PostAndSuggestionListItem key={post[0].postId} index={index} post={post} userId={userId} />
                             }
 

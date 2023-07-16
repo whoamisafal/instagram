@@ -2,7 +2,7 @@ import React from 'react';
 import HOST_URL from '../proxy';
 
 class UserSearchNavSec extends React.Component {
-
+   
     constructor(props) {
         super(props);
         this.state = {
@@ -14,12 +14,17 @@ class UserSearchNavSec extends React.Component {
         this.show = this.show.bind(this);
         this.close = this.close.bind(this);
         this.Hclose=this.Hclose.bind(this);
-       
+       this.open = false;
     
     }
     componentDidMount() {
 
     }
+    handleOpen = () => {
+        this.setState({
+            open: true
+        })
+      };
     close() {
         this.setState({
             searchField: ''
@@ -67,30 +72,29 @@ class UserSearchNavSec extends React.Component {
 
     }
   
-
-
-
-
     render() {
         return <>
             <input type="Search" className='search-people' placeholder="Search..." value={this.state.searchField} onChange={this.onChangeField} autoComplete='off'
                 onFocus={this.show}  onBlur={this.Hclose}/>
+        
             <div className='search-result'  onBlur={this.close}>
               
 
                 {this.isLoading?<><h1>Loading...</h1></>:  this.state.searchResult.length > 0 ? this.state.searchResult.map(user => {
-                    return <a href={'/'+user.username} style={{textDecoration:'none'}}> <div className='search-result-item'>
+                    return  <a href={'/'+user.username} style={{textDecoration:'none'}}> <div className='search-result-item'>
                         <img src={user.profile} alt={user.username} className='search-result-img'  />
                         <div className='search-result-info'>
                         <h2 class='search-result-fullname'>{user.fullname}</h2>
                         <p class="search-result-username">{user.username}</p>
                         </div>
                     </div></a> 
+                   
                 })
                     : <>No result</>
                 }
-
+                   
             </div>
+   
         </>
     }
 

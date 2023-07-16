@@ -50,13 +50,13 @@ function PostViewerSlider(props) {
         <div className="post-viewer-slider">
             {
                 len > 1 ? <div className="slider-arrow-container">
-                    {slideIndex == 0 ? <div></div> : <ButtonSliderArrow className="slider-arrow-left" handler={prevSlide} />}
-                    {slideIndex == len - 1 ? <div></div> : <ButtonSliderArrow className="slider-arrow-right" handler={nextSlide} />}
+                    {slideIndex === 0 ? <div></div> : <ButtonSliderArrow className="slider-arrow-left" handler={prevSlide} />}
+                    {slideIndex === len - 1 ? <div></div> : <ButtonSliderArrow className="slider-arrow-right" handler={nextSlide} />}
                 </div> : null
             }
             {
                 post && Array.from(post[0]).map((item, index) => {
-                    return <PostViewerSliderItem className={slideIndex == index ? "post-viewer-activeSlider" : "post-viewer-disableSlider"} post={item} key={index} />
+                    return <PostViewerSliderItem className={slideIndex === index ? "post-viewer-activeSlider" : "post-viewer-disableSlider"} post={item} key={index} />
                 })
             }
         </div>
@@ -68,7 +68,7 @@ function PostViewerSliderItem(props) {
 
     return <>
         {
-            mimetype.includes("image") ? <img className={props.className} draggable={false} src={HOST_URL + "/" + item.url} />
+            mimetype.includes("image") ? <img className={props.className} alt="" draggable={false} src={HOST_URL + "/" + item.url} />
                 : null
         }
         {
@@ -123,7 +123,7 @@ function RightSideHeader(params) {
   
         <div className={"righsideheader-main-container"}>
             <div className={"righsideheader-left-side"}>
-                <a href={"/" + user.username}>  <img className={"righsideheader-left-side-img"} draggable={false} src={HOST_URL + "/" + user.profile} /></a>
+                <a href={"/" + user.username}>  <img className={"righsideheader-left-side-img"} alt="" draggable={false} src={HOST_URL + "/" + user.profile} /></a>
                 <div className={"righsideheader-left-side-name"}>
                     <a href={"/" + user.username} style={linkStyle}>{user.username}</a>
                 </div>
@@ -161,7 +161,7 @@ function CommentItem(params) {
     return <>
         <div className="comment-item">
             <div className="comment-item-left">
-                <div className="comment-item-left-img"> <a href={"/" + objcomment.username}><img draggable={false} src={HOST_URL + "/" + objcomment.profile} /></a></div>
+                <div className="comment-item-left-img"> <a href={"/" + objcomment.username}><img  alt="" draggable={false} src={HOST_URL + "/" + objcomment.profile} /></a></div>
                 <p><a href={"/" + objcomment.username} style={{ textDecoration: 'none', color: '#000' }}>{objcomment.username}</a></p>
             </div>
             <div className="comment-item-right">
@@ -181,7 +181,7 @@ function RightSideBody(params) {
     let [currentPost, setCurrentPost] = useState([]);
     let [caption, setCaption] = useState('');
     let [comments, setComments] = useState([]);
-    let [time,setTime]=useState(0)
+   // let [time,setTime]=useState(0)
 
     useEffect(() => {
         if (post !== null) {
@@ -335,7 +335,7 @@ function PostViewer(props) {
         })
             .then(res => {
                 if (res.status === 200) {
-                    if (res.data.status == 200) {
+                    if (res.data.status === 200) {
                         if (res.data.post.length > 0) {
                             setData(res.data.post);
                             setIsLoading(false);

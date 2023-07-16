@@ -99,7 +99,7 @@ function EmailSignUp(props) {
 
     let token = Cookies.get('token');
 
-    if (token != undefined) {
+    if (token !== undefined) {
         return <Redirect to="/" isAuth={this.props.isAuth} />
     }
     return <>

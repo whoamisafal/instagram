@@ -18,9 +18,19 @@ const jwt = require('jsonwebtoken')
 const fs = require("fs")
 const { sendMail } = require('./model/sendMail')
 const md5 = require('md5')
-const { mkdir } = require('fs')
-const { time } = require('console')
-
+const os = require("os")
+const cluster = require('cluster')
+const noProcessor = os.cpus().length
+process.env.UV_THREADPOOL_SIZE=4
+if(cluster.isPrimary){
+    for (let index = 0; index <noProcessor; index++) {
+       cluster.fork();
+    }
+}else{
+    http.listen(port, () => {
+        console.log('server started at port ' + port)
+    })
+}
 
 app.set('assets', path.join(__dirname, 'assets'));
 app.use(express.static(path.join(__dirname, 'assets')));
@@ -134,18 +144,31 @@ var postUpload = multer({ storage: media })
 
 
 app.get('/assets/media/images/postImages/:filename', (req, res) => {
-    const filename = req.url.split('/').pop()
-    res.sendFile(path.join(__dirname, 'assets/media/images/postImages', filename))
+    let filename = req.url.split('/').pop()
+    filename = path.join(__dirname, 'assets/media/images/postImages', filename)
+   // res.sendFile(filename)
+   let readStream = fs.createReadStream(filename)
+   res.writeHead(200,{'Content-Type':'image/*'})
+   readStream.pipe(res)
 })
 app.get('/assets/media/images/profile/:filename', (req, res) => {
-    const filename = req.url.split('/').pop()
-    res.sendFile(path.join(__dirname, '/assets/media/images/profile', filename))
+    let filename = req.url.split('/').pop()
+    filename = path.join(__dirname, 'assets/media/images/profile', filename)
+   // res.sendFile(filename)
+   let readStream = fs.createReadStream(filename)
+   res.writeHead(200,{'Content-Type':'image/*'})
+   readStream.pipe(res)
 })
 
 
 app.get('/assets/media/videos/:filename', (req, res) => {
-    const filename = req.url.split('/').pop()
-    res.sendFile(path.join(__dirname, '/assets/media/videos', filename))
+    let filename = req.url.split('/').pop()
+    filename = path.join(__dirname, 'assets/media/videos', filename)
+    // res.sendFile(filename)
+    let readStream = fs.createReadStream(filename)
+    res.writeHead(200,{'Content-Type':'image/*'})
+    readStream.pipe(res)
+    //res.sendFile(path.join(__dirname, '/assets/media/videos', filename))
 })
 
 app.post('/accounts/emailsignup', async (req, res) => {
@@ -278,29 +301,31 @@ app.post('/login', async (req, res) => {
 })
 
 function AuthenticationToken(req, res, next) {
+   
     const authHeader = req.headers['authorization']
+   
     const token = authHeader && authHeader.split(' ')[1]
-    if (token == null) {
-        return res.send({ status: 403, statusText: "Failed", message: "Please Login" })
+    //console.log(token);
+    if (token == null || token===undefined) {
+        return res.status(401).send({ status: 403, statusText: "Failed", message: "Please Login" })
     }
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) {
-            return res.send({ status: 403, statusText: "Failed", message: "Please Login" })
+            return res.status(401).send({ status: 403, statusText: "Failed", message: "Please Login" })
         }
+        
         req.user = user
         next()
     })
 }
 
 app.post('/activity', AuthenticationToken, (req, res) => {
-
-    return res.send("Activity")
+    return res.status(200).send("Activity")
 })
 
 
 
-app.get('/', AuthenticationToken, async (req, res) => {
-
+app.get('/',AuthenticationToken, async (req, res) => {
     return res.send("Home")
 
 })
@@ -416,7 +441,7 @@ app.get('/explore/people', AuthenticationToken, async (req, res) => {
     return res.status(200).send(result)
 })
 
-app.post('/upload_profile', AuthenticationToken, async (req, res) => {
+app.post('/upload_profile',AuthenticationToken, async (req, res) => {
     upload(req, res,async function (err) {
         if (err instanceof multer.MulterError) {
             ////console.log"Multer Error" + err);
@@ -486,7 +511,7 @@ app.get('/is_following?:userId', AuthenticationToken, async (req, res) => {
 app.get('/currentUser_follower_following', AuthenticationToken, async (req, res) => {
     let currentUserId = req.user.userId
 
-    if (currentUserId == undefined || currentUserId == NaN) {
+    if (currentUserId === undefined || isNaN(currentUserId)) {
 
         return res.status(403).send({ status: 403, message: "Please login" })
     }
@@ -499,7 +524,7 @@ app.get('/currentUser_follower_following', AuthenticationToken, async (req, res)
 app.get('/get_follower_following?:userId', async (req, res) => {
     let { userId } = req.query
 
-    if (userId == undefined || userId == NaN) {
+    if (userId === undefined || isNaN(userId)) {
         return res.status(403).send({ status: 403, message: "Please login" })
     }
     let followers = await helper.getFollowerCount(userId)
@@ -531,7 +556,7 @@ app.get('/get_followers?:info', AuthenticationToken, async (req, res) => {
 
         })
     }
-    if (currentUsername == undefined) {
+    if (currentUsername === undefined) {
 
     }
     if (isNaN(userId)) {
@@ -559,12 +584,14 @@ app.get('/get_followers?:info', AuthenticationToken, async (req, res) => {
 
 app.get('/get_all_followers_ids', AuthenticationToken, async (req, res) => {
     let userId = req.user.userId
+    
     let result = await helper.getFollowers(userId)
+  
     if (result === false) {
-        return res.status(403).send({ status: 403, message: "Something went wrong" })
+        return res.status(403).send({ message: "Something went wrong" })
     }
     if (result.length === 0) {
-        return res.status(403).send({ status: 403, message: "No following" })
+        return res.status(200).send({ status: 403, message: "No following" })
     }
     let ids = result.map(item => item.userId)
     //console.log(ids);
@@ -592,7 +619,7 @@ app.get('/get_followings?:info', AuthenticationToken, async (req, res) => {
 
         })
     }
-    if (currentUsername == undefined) {
+    if (currentUsername === undefined) {
 
     }
     if (isNaN(userId)) {
@@ -625,7 +652,7 @@ app.post('/change_password', AuthenticationToken, async (req, res) => {
     ////console.logoldPassword, newPassword, confirmPassword);
     let currentUserId = req.user.userId
     ////console.logcurrentUserId);
-    if (currentUserId == undefined) {
+    if (currentUserId === undefined) {
         return res.send({ status: 403, message: "Please login" })
     }
     let result = await helper.changePassword(currentUserId, oldPassword, newPassword, confirmPassword)
@@ -678,27 +705,22 @@ app.post('/update_user_info', AuthenticationToken, async (req, res) => {
 
 app.post('/create_a_chat', AuthenticationToken, async (req, res) => {
     let { users } = req.body
-    users = users[0]
+    users=users[0]
     let current_userId = req.user.userId
     let result = await helper.createChat(current_userId, users)
     if (current_userId === undefined) {
         return res.send({ status: 403, message: "Please login" })
     }
     if (users.userId === 0) {
-        return res.send({ status: 403, message: "Something went's wrong" })
+        return res.status(403).send({ status: 403, message: "Something went's wrong" })
     }
     if (users.userId === current_userId) {
-        return res.send({ status: 403, message: "You can't chat with yourself" })
+        return res.status(403).send({ status: 403, message: "You can't chat with yourself" })
     }
-
-
-
     if (result === false) {
-        return res.send({ status: 403, message: "Something went's wrong" })
-
+        return res.status(403).send({ status: 403, message: "Something went's wrong" })
     }
-
-    res.send({ status: 200, message: "Chat created successfully", chatId: result, username: users.username })
+    res.status(200).send({ status: 200, message: "Chat created successfully", chatId: result, username: users.username })
     res.end()
 })
 
@@ -731,16 +753,8 @@ app.post('/send_message_text', AuthenticationToken, async (req, res) => {
     if (current_userId === undefined) {
         return res.send({ status: 403, message: "Please login" })
     }
-    let messageStructure = new MessageStructure(
-        0,
-        current_userId,
-        receiverId,
-        message,
-        timestamp,
-        type,
-        0,
-        messageReference,
-        0, 0
+    let messageStructure = new MessageStructure(0,current_userId,receiverId,message,timestamp,type,
+        0,messageReference,0, 0
     )
     try {
         let result = await chat.sendMessage(messageStructure)
@@ -920,7 +934,7 @@ app.get('/get_more_post', async (req, res) => {
 app.get('/explore', AuthenticationToken, async (req, res) => {
 
     //Find out the user behaviour 
-    const userId = req.user.userId
+    //const userId = req.user.userId
 
     const result = await helper.getExplores()
     if (result === false) {
@@ -1293,10 +1307,6 @@ app.delete('/delete/post/', AuthenticationToken, async (req, res) => {
         statusCode: result ? 200 : 403
     })
 
-})
-
-http.listen(port, () => {
-    ////console.log'server started at port ' + port)
 })
 
 

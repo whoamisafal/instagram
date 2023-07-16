@@ -42,7 +42,7 @@ function FollowAndFollowing(props) {
             }).catch(err => {
                 console.log(err);
             })
-    }, [user])
+    }, [user, userId])
 
     React.useEffect(() => {
 

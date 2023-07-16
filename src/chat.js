@@ -106,7 +106,7 @@ function UserRequestItem(props) {
     return <>
         <div className='user-request-item'>
             <div className='user-request-item-info'>
-                <img src={profile} className='user-request-item-image' />
+                <img src={profile} className='user-request-item-image' alt='' />
                 <div className='user-request-item-userdetails'>
                    <a href={'/'+user.username} style={{textDecoration:'none',color:'#000'}}> <h3> {user.username}</h3></a>
                    
@@ -298,11 +298,11 @@ function ChatUserList(props) {
 function ChatUser(props) {
     let user = props.user
     let history = useHistory()
-    let currentTimestamp = new Date().getTime()
-    let lastMessageTime = user.timestamp
+    //let currentTimestamp = new Date().getTime()
+    //let lastMessageTime = user.timestamp
     //.log(currentTimestamp, lastMessageTime);
-    let timeDiff = currentTimestamp - lastMessageTime
-    let customTime =helper.getCustomTime(timeDiff)
+    //let timeDiff = currentTimestamp - lastMessageTime
+    //let customTime =helper.getCustomTime(timeDiff)
     //.log(new Date(lastMessageTime * 1000).toLocaleString());
     const handleClick = (e) => {
         e.preventDefault()
@@ -355,7 +355,7 @@ function ChatWith(props) {
                 if (data.status === 403) {
                     setUsernotfound(true)
                 }
-                if (res.status == 200) {
+                if (res.status === 200) {
                     setUserInfo({
                         fullname: data.fullname,
                         username: data.username,
@@ -371,20 +371,22 @@ function ChatWith(props) {
 
         // //.log("Fetch info" + userInfo.userId)
 
-        if (userInfo.userId != 0 || userInfo.userId != undefined)
+        if (userInfo.userId !== 0 && userInfo.userId !== undefined)
+      
             axios.post(HOST_URL + '/create_a_chat/', {
-                users: [{ userId: userInfo.userId, username: userInfo.username }, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + Cookies.get('token')
-                    }
-                }],
+                users: [{ userId: userInfo.userId, username: userInfo.username }]}, {
+               
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + Cookies.get('token')
+                }
             }).catch(err => {
                 setError(true)
             })
 
             return () => {}
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [username])
 
     document.getElementsByTagName("title")[0].innerHTML = username;
@@ -414,9 +416,8 @@ function ChatBox(props) {
     const reciverInfo = props.reciverInfo
     //.log("This is from chat box" + reciverInfo.userId);
     const [isSend, setIsSend] = useState(false)
-    const isSendMessage = () => {
-        setIsSend(true)
-    }
+    //const isSendMessage =() => setIsSend(true)
+    
     return <>
         <div className='chat-viewer-container'>
             <ChatViewer reciverInfo={reciverInfo} />
@@ -431,7 +432,7 @@ function ChatViewer(props) {
     let receiverId = reciverInfo.userId
     const [update, setUpdate] = useState(true)
     const [currentUserId, setCurrentUserId] = useState(0)
-    const isSend = props.isSend
+    //const isSend = props.isSend
     const [messages, setMessages] = useState([])
 
     useEffect(() => {
@@ -479,35 +480,22 @@ function MessageView(props) {
     let reciverInfo = props.reciverInfo
     let message = props.message
     let currentUserId = props.userId
-    let [customTime, setCustomTime] = useState('')
-    let sentMessageTimestamp = message.timestamp
-    setInterval(() => {
-        let currentTimestamp = new Date().getTime()
-        let timeDiff = currentTimestamp - sentMessageTimestamp
-       let  current_custom_time = helper.getCustomTime(timeDiff)
-        setCustomTime(current_custom_time)
-    }, 5000)
-
-
-
     let messageview = <></>
-    if (message.senderId == currentUserId) {
+    if(message.message==="") return messageview
+    if (message.senderId === currentUserId) {
         messageview = <li className='message-viewer-sender'>
             <div className='message-current-user' >
-                <p className='message-time'>{customTime}</p>
                 <p className='message-send-by-current-user'>{message.message}</p>
-
             </div>
         </li>
     } else {
         messageview = <li className='message-viewer-reciver'>
             <div className='message-receiver-information'>
-                <img src={HOST_URL + "/" + reciverInfo.profile} className='message-receiver-profile' />
+                <img src={HOST_URL + "/" + reciverInfo.profile} className='message-receiver-profile' alt='' />
                 <b className='message-receiver-name'>{reciverInfo.username}</b>
             </div>
             <div className='message-other-user'>
                 <p className='message-send-by-other-user'>{message.message}</p>
-                <p className='message-time'>{customTime}</p>
             </div>
         </li>
     }
@@ -525,10 +513,7 @@ function ChatInputContainer(props) {
     const handleChange = (e) => {
         setMessage(e.target.value)
     }
-    const sendImageMessage = (e) => {
 
-
-    }
     useEffect(() => {
 
         if (canSendMessage) {
@@ -560,7 +545,7 @@ function ChatInputContainer(props) {
         }
         
         return () => {}
-    }, [canSendMessage])
+    })
 
     const sendMessage = () => {
         setCanSendMessage(true)
@@ -615,7 +600,7 @@ function SearchPeopleToConverstation(props) {
     const [username, setUsername] = useState('')
 
     useEffect(() => {
-        if (searchData.length == 0) {
+        if (searchData.length === 0) {
             setLoading(false)
             return
         }
@@ -674,9 +659,8 @@ function SearchPeopleToConverstation(props) {
         return <Redirect to={'/inbox'} />
     }
     const createAChat = () => {
-        axios.post(HOST_URL + '/create_a_chat/', {
-            users: selectedUser
-        }, {
+        console.log(selectedUser);
+        axios.post(HOST_URL + '/create_a_chat/', {users: selectedUser}, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + Cookies.get('token')

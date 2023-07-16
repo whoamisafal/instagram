@@ -7,11 +7,6 @@ import SettingMenu from "./component/setting-menu";
 import './css/settings.css';
 
 class Settings extends React.Component{
-
-    constructor(props){
-        super(props)
-
-    }
     render(){  
         if(!this.props.isAuth){
         return <Redirect to="/login" />
@@ -35,9 +30,6 @@ class Settings extends React.Component{
 
            </Router>
         </div>
-
-
-        
         </>
     }
 
